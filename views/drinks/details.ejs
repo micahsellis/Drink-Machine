@@ -1,0 +1,117 @@
+<%- include('../partials/header') %>
+
+<% if (drinkAPI != null) { %>
+<div class="block">
+    <div class="card">
+        <div class="card-content">
+            <ul>
+                <h3 class="title"><%= drinkAPI.strDrink %></h3>
+                <% dArr = Object.values(drinkAPI) %>
+                <img src="<%=drinkAPI.strDrinkThumb%>" alt="<%=drinkAPI.strDrink%>" width="150px">
+                <p><%= drinkAPI.strInstructions %> </p>
+                <% dArr = Object.values(drinkAPI) %>
+                <% for (i=21;i<36;i++) { %>
+                <% if (dArr[i] !== null) { %>
+                <table>
+                    <tr>
+                        <th><%=dArr[i]%></th>
+                        <td><%=dArr[i+15]%></td>
+                    </tr>
+                </table>
+                <% }} %>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="title">Reviews:</h3>
+
+<div class="block">
+    <div class="card">
+        <div class="card-content">
+            <ul>
+                <form action="/reviews/<%=drinkAPI.idDrink%>" method="POST">
+                    <label for="rating">Rating</label>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label for="details">Comments:</label>
+                    <input type="text" name="details">
+                    <label for="user">
+                        <% if (user) { %>
+                        <%= user.name %>
+                        <button type="submit">Submit Review</button>
+                        <% } else { %>
+                        You must be <a href="/auth/google">Logged In</a> to leave a review!
+                        <% }; %>
+                    </label>
+                </form>
+            </ul>
+        </div>
+    </div>
+</div>
+<% }; %>
+
+<% if (drink != null) { %>
+<div class="block">
+    <div class="card">
+        <div class="card-content">
+            <ul>
+                <h3 class="title"><%= drink.name %></h3>
+                <form action="/drinks/delete/<%=drink.id%>?_method=DELETE" method="POST"><button type="submit">X</button>
+                </form>
+                <h4 class="subtitle"><%= drink.category %></h4>
+                <% if (drink.drinkImg !== null) { %>
+                <img src="<%= drink.drinkImg %>" alt="<%= drink.name %> Image" width="150px">
+                <% } %>
+                <p><%= drink.instructions%></p>
+                <h5>Ingredients:</h5>
+                <% myDrinkArr = Object.values(drink.toObject()) %>
+                <% for (i=6; i <= 20; i++) { %>
+                <% if (myDrinkArr[i] !== null) { %>
+                <table>
+                    <tr>
+                        <th><%=myDrinkArr[i]%></th>
+                        <td><%=myDrinkArr[i+15]%></td>
+                    </tr>
+                </table>
+                <% }} %>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="title">Reviews:</h3>
+
+<div class="block">
+    <div class="card">
+        <div class="card-content">
+            <ul>
+                <form action="/reviews/<%=drink.id%>" method="POST">
+                    <label for="rating">Rating</label>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label for="details">Comments:</label>
+                    <input type="text" name="details">
+                    <label for="user">
+                        <% if (user) { %>
+                        <%= user.name %>
+                        <button type="submit">Submit Review</button>
+                        <% } else { %>
+                        You must be <a href="/auth/google">Logged In</a> to leave a review!
+                        <% }; %>
+                    </label>
+                </form>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<% }; %>

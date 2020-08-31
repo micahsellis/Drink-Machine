@@ -1,4 +1,53 @@
 <%- include('partials/header') %> 
-  <p>HOME or WHATEVER YOU WANT</p>
-  </body>
+<div class="block">
+  <div class="card">
+    <div class="card-content">
+        <ul>
+          <h3 class="title"><a href="/drinks/details/<%=newDrink.idDrink%>"><%= newDrink.strDrink %></a></h3>
+        <% dArr = Object.values(newDrink) %>
+        <img src="<%=newDrink.strDrinkThumb%>" alt="<%=newDrink.strDrink%>" width="150px">
+        <p><%= newDrink.strInstructions.substr(0,40) %> ...</p>
+        <% dArr = Object.values(newDrink) %>
+        <% for (i=21;i<36;i++) { %>
+        <% if (dArr[i] !== null) { %>
+          <table>
+            <tr>
+              <th><%=dArr[i]%></th>
+              <td><%=dArr[i+15]%></td>
+            </tr>
+          </table>
+        <% }} %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% myDrinks.forEach(md => { %>
+  <div class="block">
+    <div class="card">
+      <div class="card-content">
+        <ul>
+          <h3 class="title"><a href="/drinks/details/<%=md._id%>"><%= md.name %></a></h3>
+          <form action="/drinks/delete/<%=md.id%>?_method=DELETE" method="POST"><button type="submit">X</button></form>
+          <h4 class="subtitle"><%= md.category %></h4>
+          <% if (md.drinkImg !== null) { %>
+            <img src="<%= md.drinkImg %>" alt="<%= md.name %> Image" width="150px">
+          <% } %>
+          <p><%= md.instructions.substr(0,40) %> ...</p>
+            <h5>Ingredients:</h5>
+            <% myDrinkArr = Object.values(md.toObject()) %>
+            <% for (i=6; i <= 10; i++) { %>
+            <% if (myDrinkArr[i] !== null) { %>
+            <table>
+              <tr>
+                <th><%=myDrinkArr[i]%></th>
+                <td><%=myDrinkArr[i+15]%></td>
+              </tr>
+            </table>
+            <% }} %>
+          </ul>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

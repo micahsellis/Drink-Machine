@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/stylesheets/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!-- <link rel="stylesheet" href="/public/stylesheets/mystyles.css"> -->
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
     <title>Drink Machine | <%= title %></title>
 </head>
 <body>
-<div class="navbar-fixed">
+<div class="">
     <nav>
-        <div class="nav-wrapper">
-            <a href="" class="brand-logo left">Drink Machine</a>
+        <div class="">
+            <a href="/" class="title">Drink Machine</a>
+            <form action="/drinks/results" method="POST">
+            <input type="text" name="search" value="<%=body%>" onfocus="this.value=''">
+            <input type="submit" value="SEARCH"></form>
             <ul class="right">
                 <li>
                     <% if (user) { %>

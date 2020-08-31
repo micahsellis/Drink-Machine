@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<% drinks.forEach(d => { %>
+<ul><h3><%= d.strDrink %></h3></ul>
+    <% dArr = Object.values(d) %>
+    <li><img src="<%=d.strDrinkThumb%>" alt="<%=d.strDrink%>" width="150px"></li>
+    <li><%= d.strInstructions %></li>
+    <% dArr = Object.values(d) %>
+    <% for (i=21;i<36;i++) { %>
+        <% if (dArr[i] !== null) { %>
+    <li>
+        <table>
+            <tr>
+                <th><%=dArr[i]%></th>
+                <td><%=dArr[i+15]%></td>
+            </tr>
+        </table>
+    </li>
+<% }} %>
+<% }); %>

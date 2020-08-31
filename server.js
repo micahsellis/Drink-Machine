@@ -15,17 +15,18 @@ require('./config/passport')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const drinksRouter = require('./routes/drinks');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'))
 app.use(session({
   secret: 'shhhh',
   resave: false,
@@ -34,8 +35,14 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/drinks', drinksRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
