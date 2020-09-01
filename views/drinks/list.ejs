@@ -1,0 +1,116 @@
+<%- include('../partials/header') %>
+
+<% if (drinks) { %>
+<% drinks.forEach(d => { %>
+<div class="block">
+    <div class="card">
+        <div class="card-content">
+            <ul>
+                <h3 class="title"><%= d.name %></h3>
+                <h4 class="subtitle"><%= d.category %></h4>
+                <% if (d.drinkImg) { %>
+                <img src="<%= d.drinkImg %>" alt="<%= d.name %> Image" width="150px">
+                <% } %>
+                <p><%= d.instructions%></p>
+                <h5>Ingredients:</h5>
+                <table>
+                <% if (d.ingredient1) { %>
+                    <tr>
+                        <td><%=d.ingredient1%></td>
+                        <td><%=d.measure1%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient2) { %>
+                    <tr>
+                        <td><%=d.ingredient2%></td>
+                        <td><%=d.measure2%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient3) { %>
+                    <tr>
+                        <td><%=d.ingredient3%></td>
+                        <td><%=d.measure3%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient4) { %>
+                    <tr>
+                        <td><%=d.ingredient4%></td>
+                        <td><%=d.measure4%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient5) { %>
+                    <tr>
+                        <td><%=d.ingredient5%></td>
+                        <td><%=d.measure5%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient6) { %>
+                    <tr>
+                        <td><%=d.ingredient6%></td>
+                        <td><%=d.measure6%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient7) { %>
+                    <tr>
+                        <td><%=d.ingredient7%></td>
+                        <td><%=d.measure7%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient8) { %>
+                    <tr>
+                        <td><%=d.ingredient8%></td>
+                        <td><%=d.measure8%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient9) { %>
+                    <tr>
+                        <td><%=d.ingredient9%></td>
+                        <td><%=d.measure9%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient10) { %>
+                    <tr>
+                        <td><%=d.ingredient10%></td>
+                        <td><%=d.measure10%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient11) { %>
+                    <tr>
+                        <td><%=d.ingredient11%></td>
+                        <td><%=d.measure11%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient12) { %>
+                    <tr>
+                        <td><%=d.ingredient12%></td>
+                        <td><%=d.measure12%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient13) { %>
+                    <tr>
+                        <td><%=d.ingredient13%></td>
+                        <td><%=d.measure13%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient14) { %>
+                    <tr>
+                        <td><%=d.ingredient14%></td>
+                        <td><%=d.measure14%></td>
+                    </tr>
+                <% } %>
+                <% if (d.ingredient15) { %>
+                    <tr>
+                        <td><%=d.ingredient15%></td>
+                        <td><%=d.measure15%></td>
+                    </tr>
+                <% } %>
+                </table>
+                <form action="/drinks/delete/<%=d.id%>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Drink</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+</div>
+<% }) %>
+<% }; %>

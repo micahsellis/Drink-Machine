@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const drinkSchema = new mongoose.Schema({
-    drinkID: String,
+    idDrink: String,
     name: {
         type: String,
         required: true
@@ -52,7 +52,14 @@ const drinkSchema = new mongoose.Schema({
     measure13: String,
     measure14: String,
     measure15: String,
-    author: String,
+    author: {
+        type: String,
+        required: true
+    },
+    idUser: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true
 });

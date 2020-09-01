@@ -1,0 +1,13 @@
+<% for (let i = 1; i <= 15; i++) { %>
+<% if (`${d.ingredient}${i}` !== null) { %>
+    <p><%= `${d.ingredient}${i}` %></p>
+<% }} %>
+<% myDrinkArr = Object.values(d.toObject()) %>
+<% for (i=6; i <= 20; i++) { %>
+<% if (myDrinkArr[i] !== null) { %>
+<table>
+    <tr>
+        <th><%=myDrinkArr[i]%></th>
+        <td><%=myDrinkArr[i+15]%></td>
+    </tr>
+<% }} %>

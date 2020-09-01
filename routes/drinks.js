@@ -1,10 +1,16 @@
 const router = require('express').Router();
 const drinksCtrl = require('../controllers/drinks');
-const drink = require('../models/drink');
 
+router.get('/list', drinksCtrl.list)
+router.get('/new', drinksCtrl.new)
 router.get('/details/:id', drinksCtrl.details)
-router.get('/oops', drinksCtrl.oops)
+router.post('/new', isLoggedIn, drinksCtrl.create)
 router.post('/results', drinksCtrl.search)
 router.delete('/delete/:id', drinksCtrl.delete)
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/auth/google');
+}
 
 module.exports = router

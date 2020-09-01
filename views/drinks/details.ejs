@@ -6,19 +6,106 @@
         <div class="card-content">
             <ul>
                 <h3 class="title"><%= drinkAPI.strDrink %></h3>
-                <% dArr = Object.values(drinkAPI) %>
-                <img src="<%=drinkAPI.strDrinkThumb%>" alt="<%=drinkAPI.strDrink%>" width="150px">
+                <% if (drinkAPI.drinkImg) { %>
+                <img src="<%= drinkAPI.drinkImg %>" alt="<%= drinkAPI.name %>" width="150px">
+                <% } %>
                 <p><%= drinkAPI.strInstructions %> </p>
-                <% dArr = Object.values(drinkAPI) %>
-                <% for (i=21;i<36;i++) { %>
-                <% if (dArr[i] !== null) { %>
                 <table>
                     <tr>
-                        <th><%=dArr[i]%></th>
-                        <td><%=dArr[i+15]%></td>
+                        <th>Ingredients:</th>
+                        <th>Measurements:</th>
                     </tr>
+                    <% if (drinkAPI.ingredient1) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient1%></td>
+                        <td><%=drinkAPI.measure1%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient2) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient2%></td>
+                        <td><%=drinkAPI.measure2%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient3) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient3%></td>
+                        <td><%=drinkAPI.measure3%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient4) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient4%></td>
+                        <td><%=drinkAPI.measure4%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient5) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient5%></td>
+                        <td><%=drinkAPI.measure5%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient6) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient6%></td>
+                        <td><%=drinkAPI.measure6%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient7) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient7%></td>
+                        <td><%=drinkAPI.measure7%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient8) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient8%></td>
+                        <td><%=drinkAPI.measure8%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient9) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient9%></td>
+                        <td><%=drinkAPI.measure9%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient10) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient10%></td>
+                        <td><%=drinkAPI.measure10%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient11) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient11%></td>
+                        <td><%=drinkAPI.measure11%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient12) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient12%></td>
+                        <td><%=drinkAPI.measure12%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient13) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient13%></td>
+                        <td><%=drinkAPI.measure13%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient14) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient14%></td>
+                        <td><%=drinkAPI.measure14%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drinkAPI.ingredient15) { %>
+                    <tr>
+                        <td><%=drinkAPI.ingredient15%></td>
+                        <td><%=drinkAPI.measure15%></td>
+                    </tr>
+                    <% } %>
                 </table>
-                <% }} %>
             </ul>
         </div>
     </div>
@@ -64,21 +151,106 @@
                 <form action="/drinks/delete/<%=drink.id%>?_method=DELETE" method="POST"><button type="submit">X</button>
                 </form>
                 <h4 class="subtitle"><%= drink.category %></h4>
-                <% if (drink.drinkImg !== null) { %>
-                <img src="<%= drink.drinkImg %>" alt="<%= drink.name %> Image" width="150px">
+                <% if (drink.drinkImg) { %>
+                <img src="<%= drink.drinkImg %>" alt="<%= drink.name %>" width="150px">
                 <% } %>
                 <p><%= drink.instructions%></p>
-                <h5>Ingredients:</h5>
-                <% myDrinkArr = Object.values(drink.toObject()) %>
-                <% for (i=6; i <= 20; i++) { %>
-                <% if (myDrinkArr[i] !== null) { %>
                 <table>
                     <tr>
-                        <th><%=myDrinkArr[i]%></th>
-                        <td><%=myDrinkArr[i+15]%></td>
+                        <th>Ingredients:</th>
+                        <th>Measurements:</th>
                     </tr>
+                    <% if (drink.ingredient1) { %>
+                    <tr>
+                        <td><%=drink.ingredient1%></td>
+                        <td><%=drink.measure1%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient2) { %>
+                    <tr>
+                        <td><%=drink.ingredient2%></td>
+                        <td><%=drink.measure2%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient3) { %>
+                    <tr>
+                        <td><%=drink.ingredient3%></td>
+                        <td><%=drink.measure3%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient4) { %>
+                    <tr>
+                        <td><%=drink.ingredient4%></td>
+                        <td><%=drink.measure4%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient5) { %>
+                    <tr>
+                        <td><%=drink.ingredient5%></td>
+                        <td><%=drink.measure5%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient6) { %>
+                    <tr>
+                        <td><%=drink.ingredient6%></td>
+                        <td><%=drink.measure6%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient7) { %>
+                    <tr>
+                        <td><%=drink.ingredient7%></td>
+                        <td><%=drink.measure7%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient8) { %>
+                    <tr>
+                        <td><%=drink.ingredient8%></td>
+                        <td><%=drink.measure8%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient9) { %>
+                    <tr>
+                        <td><%=drink.ingredient9%></td>
+                        <td><%=drink.measure9%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient10) { %>
+                    <tr>
+                        <td><%=drink.ingredient10%></td>
+                        <td><%=drink.measure10%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient11) { %>
+                    <tr>
+                        <td><%=drink.ingredient11%></td>
+                        <td><%=drink.measure11%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient12) { %>
+                    <tr>
+                        <td><%=drink.ingredient12%></td>
+                        <td><%=drink.measure12%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient13) { %>
+                    <tr>
+                        <td><%=drink.ingredient13%></td>
+                        <td><%=drink.measure13%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient14) { %>
+                    <tr>
+                        <td><%=drink.ingredient14%></td>
+                        <td><%=drink.measure14%></td>
+                    </tr>
+                    <% } %>
+                    <% if (drink.ingredient15) { %>
+                    <tr>
+                        <td><%=drink.ingredient15%></td>
+                        <td><%=drink.measure15%></td>
+                    </tr>
+                    <% } %>
                 </table>
-                <% }} %>
             </ul>
         </div>
     </div>

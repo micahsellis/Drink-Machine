@@ -9,8 +9,14 @@ const reviewSchema = new mongoose.Schema({
     },
     details: String,
     idDrink: String,
-    Author: String,
-    idUser: String
+    author: {
+        type: String,
+        required: true
+    },
+    idUser: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true
 })

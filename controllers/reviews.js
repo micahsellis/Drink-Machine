@@ -1,4 +1,4 @@
-const Drink = require('../models/drink')
+const Review = require('../models/reviews')
 
 module.exports = {
     create,
@@ -7,13 +7,13 @@ module.exports = {
 }
 
 function create(req, res) {
-    Drink.findById(req.params.id)
-        .then(drink => {
-            drink.review.push(req.body)
-            drink.save()
-                .then(() => res.redirect(`/drinks/${drink._id}`))
-                .catch(err => console.log(err))
-        })
+    req.body.idDrink = req.params.id
+    req.body.author = req.user.name
+    req.body.idUser = req.user._id
+    const review = new Review(req.body)
+    console.trace("youre in the create function")
+    review.save()
+        .then(() => res.redirect(`/drinks/details/${req.params.id}`))
         .catch(err => console.log(err))
 }
 

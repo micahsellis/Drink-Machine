@@ -1,9 +1,20 @@
 const request = require('request')
 const Drink = require('../models/drink')
+const Review = require('../models/reviews')
+
+module.exports = {
+    home,
+    list,
+    create,
+    search,
+    details,
+    delete: deleteDrink,
+    new: newDrink
+}
 
 const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 
-function index(req, res) {
+function home(req, res) {
     request(randomDrink, (err, response, body) => {
         const newDrink = JSON.parse(body).drinks[0]
         Drink.find({})
@@ -18,6 +29,16 @@ function index(req, res) {
                 })
             .catch(err => console.log(err))
     })
+}
+
+function create(req, res) {
+    req.body.drinkID = null
+    req.body.idUser = req.user.id
+    req.body.author = req.user.name
+    const drink = new Drink(req.body)
+    drink.save()
+        .then(drink => res.redirect('/'))
+        .catch(err => console.log(err))
 }
 
 function search(req, res) {
@@ -43,36 +64,42 @@ function details(req, res) {
         request(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${req.params.id}`, (err, response, doc) => {
             if (err) console.log(err)
             const drinkAPI = JSON.parse(doc).drinks[0]
-            res.render('drinks/details', {
-                title: drinkAPI.name,
-                drinkAPI,
-                drink: null,
-                body: 'Search'
-            })
+            Review.find({ idDrink: req.params.id })
+                .then(reviews => {
+                    res.render('drinks/details', {
+                        title: drinkAPI.name,
+                        drinkAPI,
+                        drink: null,
+                        body: 'Search',
+                        reviews
+                    })
+                })
+                .catch(err => console.log(err))
         })
     } else {
         Drink.findById(req.params.id)
             .then(drink => {
-                res.render('drinks/details', {
-                    title: drink.name,
-                    drink,
-                    drinkAPI: null,
-                    body: 'Search'
-                })
+                Review.find({ idDrink: drink.idDrink })
+                    .then(reviews => {
+                        res.render('drinks/details', {
+                            title: drink.name,
+                            drink,
+                            drinkAPI: null,
+                            body: 'Search',
+                            reviews
+                        })
+                    })
+                    .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
     }
 }
 
-function oops(req, res) {
-    console.log('oops')
-}
-
-function create(req, res) {
-    const drink = new drink(req.body);
-    drink.save()
-        .then(index(req, res))
-        .catch(err => console.log(err))
+function newDrink(req, res) {
+    res.render('drinks/new', {
+        title: 'Create New Drink',
+        body: 'Search'
+    })
 }
 
 function deleteDrink(req, res) {
@@ -84,11 +111,14 @@ function deleteDrink(req, res) {
         })
 }
 
-module.exports = {
-    index,
-    create,
-    search,
-    oops,
-    details,
-    delete: deleteDrink
+function list(req, res) {
+    Drink.find({ idUser: req.user.id })
+        .then(drinks => {
+            res.render('drinks/list', {
+                title: `${req.user.name}'s Drinks`,
+                drinks,
+                body: 'Search',
+            })
+        })
+        .catch(err => console.log(err))
 }

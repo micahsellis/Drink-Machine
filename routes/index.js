@@ -3,7 +3,7 @@ const passport = require('passport')
 const drinksCtrl = require('../controllers/drinks')
 
 /* GET home page. */
-router.get('/', drinksCtrl.index)
+router.get('/', drinksCtrl.home)
 
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(

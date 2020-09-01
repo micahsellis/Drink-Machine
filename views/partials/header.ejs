@@ -16,6 +16,8 @@
             <form action="/drinks/results" method="POST">
             <input type="text" name="search" value="<%=body%>" onfocus="this.value=''">
             <input type="submit" value="SEARCH"></form>
+            <a href="/drinks/new">Add New Drink</a>
+            <a href="/drinks/list">Your Drinks</a>
             <ul class="right">
                 <li>
                     <% if (user) { %>
