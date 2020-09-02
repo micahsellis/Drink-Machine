@@ -1,3 +1,4 @@
+
 <%- include('partials/header') %> 
 <div class="block">
   <div class="card">
@@ -6,39 +7,23 @@
           <h3 class="title"><a href="/drinks/details/<%=newDrink.idDrink%>"><%= newDrink.strDrink %></a></h3>
         <% dArr = Object.values(newDrink) %>
         <img src="<%=newDrink.strDrinkThumb%>" alt="<%=newDrink.strDrink%>" width="150px">
-        <p><%= newDrink.strInstructions.substr(0,40) %> ...</p>
+        <p><%= newDrink.strInstructions.substr(0,40)%>...</p>
                 <h5>Ingredients:</h5>
                 <table>
-                  <% if (newDrink.ingredient1) { %>
-                  <tr>
-                    <td><%=newDrink.ingredient1%></td>
-                    <td><%=newDrink.measure1%></td>
-                  </tr>
-                  <% } %>
-                  <% if (newDrink.ingredient2) { %>
-                  <tr>
-                    <td><%=newDrink.ingredient2%></td>
-                    <td><%=newDrink.measure2%></td>
-                  </tr>
-                  <% } %>
-                  <% if (newDrink.ingredient3) { %>
-                  <tr>
-                    <td><%=newDrink.ingredient3%></td>
-                    <td><%=newDrink.measure3%></td>
-                  </tr>
-                  <% } %>
-                  <% if (newDrink.ingredient4) { %>
-                  <tr>
-                    <td><%=newDrink.ingredient4%></td>
-                    <td><%=newDrink.measure4%></td>
-                  </tr>
-                  <% } %>
-                  <% if (newDrink.ingredient5) { %>
-                  <tr>
-                    <td>click for more...</td>
-                    <td></td>
-                  </tr>
-                  <% } %>
+                    <% for (let i = 1; i <= 4; i++) { %>
+                    <% let ingredient = 'strIngredient'+i %>
+                    <% let measure = 'strMeasure'+i %>
+                    <% if ( newDrink[ingredient]) { %>
+                    <tr>
+                      <td><%=newDrink[ingredient]%></td>
+                      <td><%=newDrink[measure]%></td>
+                    </tr>
+                    <% }} %>
+                    <% if (newDrink.strIngredient5) { %>
+                      <tr>
+                        <td><a href="/drinks/details/<%=newDrink.idDrink%>">click for more...</a></td>
+                      </tr>
+                    <% } %>
                 </table>
       </ul>
     </div>
@@ -49,7 +34,7 @@
     <div class="card">
       <div class="card-content">
         <ul>
-          <h3 class="title"><a href="/drinks/details/<%=md._id%>"><%= md.name %></a></h3>
+          <h3 class="title"><a href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a></h3>
           <form action="/drinks/delete/<%=md.id%>?_method=DELETE" method="POST"><button type="submit">X</button></form>
           <h4 class="subtitle"><%= md.category %></h4>
                 <% if (md.drinkImg) { %>
@@ -58,41 +43,25 @@
           <p><%= md.instructions.substr(0,40) %> ...</p>
             <h5>Ingredients:</h5>
                 <table>
-                  <% if (md.ingredient1) { %>
-                  <tr>
-                    <td><%=md.ingredient1%></td>
-                    <td><%=md.measure1%></td>
-                  </tr>
-                  <% } %>
-                  <% if (md.ingredient2) { %>
-                  <tr>
-                    <td><%=md.ingredient2%></td>
-                    <td><%=md.measure2%></td>
-                  </tr>
-                  <% } %>
-                  <% if (md.ingredient3) { %>
-                  <tr>
-                    <td><%=md.ingredient3%></td>
-                    <td><%=md.measure3%></td>
-                  </tr>
-                  <% } %>
-                  <% if (md.ingredient4) { %>
-                  <tr>
-                    <td><%=md.ingredient4%></td>
-                    <td><%=md.measure4%></td>
-                  </tr>
-                  <% } %>
-                  <% if (md.ingredient5) { %>
-                  <tr>
-                    <td>click for more...</td>
-                    <td></td>
-                  </tr>
-                  <% } %>
+                    <% for (let i = 1; i <= 4; i++) { %>
+                    <% let ingredient = 'ingredient'+i %>
+                    <% let measure = 'measure'+i %>
+                    <% if ( md[ingredient]) { %>
+                    <tr>
+                      <td><%=md[ingredient]%></td>
+                      <td><%=md[measure]%></td>
+                    </tr>
+                    <% }} %>
+                    <% if (md.ingredient5) { %>
+                    <tr>
+                      <td><a href="/drinks/details/<%=md._id%>">click for more...</a></td>
+                    </tr>
+                    <% } %>
                 </table>
           </ul>
-        <% }); %>
+        </div>
       </div>
     </div>
-  </div>
+    <% }); %>
 </body>
 </html>

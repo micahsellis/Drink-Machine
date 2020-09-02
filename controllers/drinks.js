@@ -9,7 +9,8 @@ module.exports = {
     search,
     details,
     delete: deleteDrink,
-    new: newDrink
+    new: newDrink,
+    update
 }
 
 const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
@@ -32,7 +33,7 @@ function home(req, res) {
 }
 
 function create(req, res) {
-    req.body.drinkID = null
+    req.body.idDrink = Date.now().toString()
     req.body.idUser = req.user.id
     req.body.author = req.user.name
     const drink = new Drink(req.body)
@@ -42,30 +43,38 @@ function create(req, res) {
 }
 
 function search(req, res) {
-    request(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${req.body.search}`, (err, response, doc) => {
-        if (err) console.log(err)
-        const drinks = JSON.parse(doc).drinks
-        if (drinks == null) {
-            res.render('drinks/oops', {
-                title: '404 Drink not found',
-                body: req.body.search
+    let regex = new RegExp(`${req.body.search}`, 'i')
+    Drink.find({ name: regex })
+        .then(docs => {
+            request(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${req.body.search}`, (err, response, doc) => {
+                if (err) console.log(err)
+                const drinks = JSON.parse(doc).drinks
+                if (drinks == null && docs.length < 1) {
+                    res.render('drinks/oops', {
+                        title: '404 Drink not found',
+                        body: req.body.search
+                    })
+                }
+                res.render('drinks/results', {
+                    title: 'Search Results',
+                    drinks,
+                    docs,
+                    body: req.body.search
+                })
             })
-        }
-        res.render('drinks/results', {
-           title: 'Search Results',
-            drinks,
-            body: req.body.search
-        })
-    })
+})
 }
 
 function details(req, res) {
-    if (req.params.id.length < 20) {
+    if (req.params.id.length < 13) {
         request(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${req.params.id}`, (err, response, doc) => {
             if (err) console.log(err)
             const drinkAPI = JSON.parse(doc).drinks[0]
             Review.find({ idDrink: req.params.id })
-                .then(reviews => {
+                .then(docs => {
+                    console.log(docs)
+                    const reviews = JSON.parse(docs)
+                    console.log(reviews)
                     res.render('drinks/details', {
                         title: drinkAPI.name,
                         drinkAPI,
@@ -119,6 +128,22 @@ function list(req, res) {
                 drinks,
                 body: 'Search',
             })
+        })
+        .catch(err => console.log(err))
+}
+
+function update(req, res) {
+    Drink.find({ idDrink: req.params.id })
+        .then(drink => {
+            if (idUser == req.user.id) {
+                res.render('drinks/update', {
+                    title: `Update ${drink.name}`,
+                    drink,
+                    body: 'Search',
+                })
+            } else {
+                res.redirect('drinks/list')
+            }
         })
         .catch(err => console.log(err))
 }
