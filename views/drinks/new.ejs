@@ -36,7 +36,7 @@
                 <div class="container">
                     <h5> &nbsp;&nbsp; <span class="red-text" style="font-size: smaller;">*</span>Ingredients: <span class="red-text" style="font-size: 12px;">(at least one ingredient and measurement is required)</span></h5>
                     <div class="row">
-                        <% for (let i=1; i<16; i++) { %>
+                        <% for (let i=1; i<11; i++) { %>
                             <% let ingredient = 'ingredient' +i %>
                             <% let measure = 'measure' +i %>   
                             <% const markup = `
@@ -58,7 +58,7 @@
                         <% if (user) { %>
                             <label for="disabled">Author:</label>
                             <input name="author" disabled value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name %>" id="disabled"><br><br>
-                            <button class="btn lime accent-3 black-text" type="submit">Add Drink</button>
+                            <button class="btn lime accent-3 black-text" type="submit">Add Drink <i class="material-icons right">send</i></button>
                         <% } else { %>
                             <p>You must be <a href="/auth/google">Logged In</a> to create a drink!</p>
                         <% }; %> 

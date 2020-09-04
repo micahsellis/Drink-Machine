@@ -116,8 +116,8 @@ function deleteDrink(req, res) {
         .then(docs => {
             console.log("Deleted: ", docs)
             res.redirect('/')
-            .catch(err => console.log(err))
         })
+        .catch(err => console.log(err))
 }
 
 function list(req, res) {
