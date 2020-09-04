@@ -1,12 +1,35 @@
 # Drink Machine
 
-A simple app consuming TheCocktailDB Api and provides the user with fun cocktail recipies that they can try while stuck at home in quarantine. Users are able to submit their own recipies for anyone to try. You can even leave reviews on your favorite drinks to let others know what tastes best! 2020 has been hard on all of us, !(https://drinks-machine.herokuapp.com)
+A simple app consuming TheCocktailDB Api and provides the user with fun cocktail recipies that they can try while stuck at home in quarantine. Users are able to submit their own recipies for anyone to try. You can even leave reviews on your favorite drinks to let others know what tastes best! 2020 has been hard on all of us, [IT'S TIME TO DRINK!](https://drinks-machine.herokuapp.com/)
 
+# Screenshots
+Home Page:
+![home page](https://i.imgur.com/roqb04i.png)
+Search Results:
+![search results](https://i.imgur.com/1r1dEzx.png)
+Drink Details and Reviews:
+![drink details](https://i.imgur.com/FjCSOjq.png)
 
-☐ Screenshot(s): A screenshot of your app's landing page and any other screenshots of interest.
+# Technologies Used
+- Node.js
+- MongoDB
+- Mongoose
+- Express Web Framework
+- JavaScript
+- CSS
+- HTML
+- Materialize CSS Framework
+- TheCocktailDB API
+- Google OAth
 
-☐ Technologies Used: List of the technologies used.
+# Getting Started
+- [Here's the Trello board that got it all started](https://trello.com/b/M8R4bQRE/cocktail-generator)
+- [Link to the deployed App](https://drinks-machine.herokuapp.com/)
 
-☐ Getting Started: Include a link to the deployed app and your Trello board with the project's planning.
+# Next Steps (Planned future enhancements)
+- Allow user to delete and edit their reviews
+- Improve mobile first design in navbar
+- Tweak user UI for a better experience
 
-☐ Next Steps: Planned future enhancements (icebox items).
+# About ME
+[Link up with me on Linkedin!](https://www.linkedin.com/in/micahsellis/)
