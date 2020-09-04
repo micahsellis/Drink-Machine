@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>Drink Machine | <%= title %></title>
 </head>
 <body>
     <nav>
-        <div class="nav-wrapper cyan white-text">
-            <a href="/" class="brand-logo left">Drink Machine</a>
+        <div class="nav-wrapper blue-grey darken-4 white-text">
+            <a href="/" class="brand-logo left" style="top: -5px;"><img src="/images/DM.png" alt="Drink Machine" style="top: -5px;"></a>
             <ul class="right">
                 <li>
                     <form action="/drinks/results" method="POST">
-                        <div class="input-field">
-                            <input id="search" type="search" name="search" placeholder="Search...">
-                            <label for="search" class="label-icon"><i class="material-icons center">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
+                        <li><button for="search" class="btn-floating btn-small waves-effect blue-grey"><i class="material-icons">search</i></button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><input class="white-text" id="search" type="search" name="search" placeholder="Search..."></li>
+                            
                     </form>
                 </li>
                     <% if (user) { %>
@@ -34,4 +32,4 @@
             </ul>
         </div>
     </nav>
-<div id="page-container"><div id="conten-wrap">
+<main>

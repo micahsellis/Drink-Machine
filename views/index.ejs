@@ -23,12 +23,13 @@
           </tr>
           <% }} %>
         </table>
+        <p class="grey-text center">Author: TheCocktailDB</p>
       </div>
     </div>
 
 <div class="row center-cols center-align">
   <% myDrinks.forEach(md => { %>
-    <div class="col m4">
+    <div class="col s4">
     <div class="card medium">
       <div class="card-image waves-effect waves-block waves-light">
         <% if (md.drinkImg) { %> 
@@ -57,6 +58,7 @@
           </tr>
           <% }} %>
         </table>
+        <p class="grey-text">Author: <%= md.author %> </p>
       </div>
     </div>
     </div>

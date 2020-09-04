@@ -1,44 +1,55 @@
 <%- include('../partials/header') %>
 
-<div class="row center-cols center-align"></div>
-    <% if (drinks.length > 0) { %>
-        <% drinks.forEach(d => { %>
-            <div class="container"><div class="col s4">
-                <div class="card large">
-                    <div class="card-image">
-                        <% if (d.drinkImg) { %>
-                            <img src="<%= d.drinkImg %>" alt="<%= d.name %> Image" width="150px">
+<div class="row center-cols center-align">
+    <% if (drinks.length > 0) { %> 
+        <% drinks.forEach(md => { %>
+            <div class="col s4">
+                <div class="card medium">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <% if (md.drinkImg) { %>
+                        <img class="activator" src="<%= md.drinkImg %>" alt="<%= md.name %>">
                         <% } else { %>
-                            <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
+                        <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
                         <% }; %>
-                        <span class="card-title"><%= d.name %><br><%= d.category %></span>
                     </div>
                     <div class="card-content">
-                        <p><%= d.instructions%></p>
+                        <span class="card-title activator grey-text text-darken-4"><%= md.name %><i
+                                class="material-icons right">more_vert</i></span><br><br>
+                        <p>
+                            <form class="center" action="/drinks/delete/<%=md.id%>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn red">Delete Drink<i class="material-icons right">delete</i></button>
+                                <a class="btn center" href="/drinks/update/<%= md.id %>">Update Drink<i class="material-icons right">edit</i></a>
+                            </form><br>
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <form class="center" action="/drinks/delete/<%=md.id%>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn red">Delete Drink<i class="material-icons right">delete</i></button>
+                            <a class="btn center" href="/drinks/update/<%= md.id %>">Update Drink<i
+                                    class="material-icons right">edit</i></a>
+                        </form><br>
+                        <span class="card-title grey-text text-darken-4"><a
+                                href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a><i
+                                class="material-icons right">close</i></span>
+                        <p><%= md.instructions %></p>
                         <h5>Ingredients:</h5>
-                        <table>
+                        <table class="responsive-table">
                             <% for (let i = 1; i <= 15; i++) { %>
-                                <% let ingredient = 'ingredient'+i %>
-                                <% let measure = 'measure'+i %>
-                                <% if ( d[ingredient]) { %>
-                                    <tr>
-                                        <td><%=d[ingredient]%></td>
-                                        <td><%=d[measure]%></td>
-                                    </tr>
+                            <% let ingredient = 'ingredient'+i %>
+                            <% let measure = 'measure'+i %>
+                            <% if ( md[ingredient]) { %>
+                            <tr>
+                                <td><%=md[ingredient]%></td>
+                                <td><%=md[measure]%></td>
+                            </tr>
                             <% }} %>
                         </table>
-                    </div></div>
-                    <div class="card-action">
-                        <form class="center" action="/drinks/delete/<%=d.id%>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn red">Delete Drink<i class="material-icons right">delete</i></button>
-                            <a class="btn center" href="/drinks/update/<%= d.id %>">Update Drink<i class="material-icons right">edit</i></a>
-                        </form>
                     </div>
                 </div>
-            </div><br><br>
-        <% }) %>
+            </div>
+        <% }); %>
     <% } else { %>
-        <div class="block">
+        <div class="container">
             <div class="card">
                 <div class="card-content">
                     <h3>Sorry! It doesn't look like you've created any drinks.</h3>
@@ -46,6 +57,7 @@
                 </div>
             </div>
         </div>
-    <% }; %>    
+    <% }; %>
+</div>
 
     <%- include('../partials/footer') %> 

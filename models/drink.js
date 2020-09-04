@@ -8,7 +8,7 @@ const drinkSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['Alcoholic', 'Non alcoholic', 'Optional alcohol'],
+        // enum: ['Alcoholic', 'Non alcoholic', 'Optional alcohol'],
         required: true
     },
     instructions: {

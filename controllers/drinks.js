@@ -18,6 +18,7 @@ const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 
 function home(req, res) {
     request(randomDrink, (err, response, body) => {
+        if (err) console.log(err)
         const newDrink = JSON.parse(body).drinks[0]
         Drink.find({})
             .then(myDrinks => {
@@ -27,17 +28,17 @@ function home(req, res) {
                     newDrink,
                     body: 'search drinks',
                     myDrinks
-                    })
                 })
+            })
             .catch(err => console.log(err))
     })
 }
 
 function create(req, res) {
-    req.body.idDrink = Date.now().toString()
-    req.body.idUser = req.user.id
-    req.body.author = req.user.name
     const drink = new Drink(req.body)
+    drink.idDrink = Date.now().toString()
+    drink.idUser = req.user.id
+    drink.author = req.user.name
     drink.save()
         .then(drink => res.redirect('/'))
         .catch(err => console.log(err))
@@ -73,7 +74,7 @@ function details(req, res) {
             const drinkAPI = JSON.parse(doc).drinks[0]
             Review.find({ idDrink: req.params.id })
                 .then(reviews => {
-                    console.log(reviews)
+                    
                     res.render('drinks/details', {
                         title: drinkAPI.name,
                         drinkAPI,
@@ -87,14 +88,14 @@ function details(req, res) {
     } else {
         Drink.find({idDrink: req.params.id})
             .then(drink => {
-                Review.find({ idDrink: drink.idDrink })
+                Review.find({ idDrink: req.params.id })
                     .then(reviews => {
                         res.render('drinks/details', {
                             title: drink.name,
                             drink: drink[0],
                             drinkAPI: null,
                             body: 'Search',
-                            reviews
+                            reviews,
                         })
                     })
                     .catch(err => console.log(err))

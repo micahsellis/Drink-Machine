@@ -29,8 +29,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" value="Add an image link!" onfocus="this.value=''">
-                        <label for="drinkImg">Drink Image: </label>
+                        <input type="text" name="drinkImg">
+                        <label for="drinkImg">Drink Image URL: </label>
                     </div>
                 </div>
                 <div class="container">
@@ -41,11 +41,11 @@
                             <% let measure = 'measure' +i %>   
                             <% const markup = `
                             <div class="input-field col s6">
-                                <input type="text" name="${ingredient}" required>
+                                <input type="text" name="${ingredient}">
                                 <label for="${ingredient}">ingredient</label>
                             </div>
                         <div class="input-field col s6">
-                            <input type="text" name="${measure}" required>
+                            <input type="text" name="${measure}">
                             <label for="${measure}">measurement</label>
                         </div>`
                             %> 

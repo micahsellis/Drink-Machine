@@ -1,68 +1,88 @@
 <%- include('../partials/header') %>
 
-<% if (docs) { %>
-    <% console.log('docs', docs) %>
-<% docs.forEach(md => { %>
-<div class="block">
-    <div class="card">
-        <div class="card-content">
-            <ul>
-                <h3 class="title"><a href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a></h3>
-                <form action="/drinks/delete/<%=md.id%>?_method=DELETE" method="POST"><button type="submit">X</button>
-                </form>
-                <h4 class="subtitle"><%= md.category %></h4>
-                <% if (md.drinkImg) { %>
-                <img src="<%= md.drinkImg %>" alt="<%= md.name %> Image" width="150px">
-                <% } %>
-                <p><%= md.instructions.substr(0,40) %> ...</p>
-                <h5>Ingredients:</h5>
-                <table>
-                    <% for (let i = 1; i <= 4; i++) { %>
-                    <% let ingredient = 'ingredient'+i %>
-                    <% let measure = 'measure'+i %>
-                    <% if ( md[ingredient]) { %>
-                    <tr>
-                        <td><%=md[ingredient]%></td>
-                        <td><%=md[measure]%></td>
-                    </tr>
-                    <% }} %>
-                    <% if (md.ingredient5) { %>
-                    <tr>
-                        <td><a href="/drinks/details/<%=md._id%>">click for more...</a></td>
-                    </tr>
-                    <% } %>
-                </table>
-            </ul>
+<div class="container">
+    <div class="row center-cols center-align">
+        <% if (docs) { %>
+            <% docs.forEach(md => { %>
+                <div class="col s4">
+                    <div class="card medium">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <% if (md.drinkImg) { %>
+                            <img class="activator" src="<%= md.drinkImg %>" alt="<%= md.name %>">
+                            <% } else { %>
+                            <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
+                            <% }; %>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= md.name %><i
+                                    class="material-icons right">more_vert</i></span><br><br>
+                            <p><a href="#"><a href="/drinks/details/<%=md.idDrink%>">Click to view full drink details</a></a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><a
+                                    href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a><i
+                                    class="material-icons right">close</i></span>
+                            <p><%= md.instructions %></p>
+                            <h5>Ingredients:</h5>
+                            <table class="responsive-table">
+                                <% for (let i = 1; i <= 15; i++) { %>
+                                <% let ingredient = 'ingredient'+i %>
+                                <% let measure = 'measure'+i %>
+                                <% if ( md[ingredient]) { %>
+                                <tr>
+                                    <td><%=md[ingredient]%></td>
+                                    <td><%=md[measure]%></td>
+                                </tr>
+                                <% }} %>
+                            </table>
+                            <p class="grey-text">Author: <%= md.author %> </p>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% }; %>
+        <% if (drinks) { %>
+        <% drinks.forEach(d => { %>
+        <div class="col s4">
+            <div class="card medium">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <% if (d.strDrinkThumb) { %>
+                    <img class="activator" src="<%= d.strDrinkThumb %>" alt="<%= d.strDrink %>">
+                    <% } else { %>
+                    <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg"
+                        alt="default drink">
+                    <% }; %>
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"><%= d.strDrink %><i
+                            class="material-icons right">more_vert</i></span><br><br>
+                    <p><a href="#"><a href="/drinks/details/<%=d.idDrink%>">Click to view full drink details</a></a>
+                    </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><a
+                            href="/drinks/details/<%=d.idDrink%>"><%= d.strDrink %></a><i
+                            class="material-icons right">close</i></span>
+                    <p><%= d.strInstructions %></p>
+                    <h5>Ingredients:</h5>
+                    <table class="responsive-table">
+                        <% for (let i = 1; i <= 15; i++) { %>
+                        <% let ingredient = 'strIngredient'+i %>
+                        <% let measure = 'strMeasure'+i %>
+                        <% if ( d[ingredient]) { %>
+                        <tr>
+                            <td><%=d[ingredient]%></td>
+                            <td><%=d[measure]%></td>
+                        </tr>
+                        <% }} %>
+                    </table>
+                    <p class="grey-text">Author: TheCocktailDB</p>
+                </div>
+            </div>
         </div>
+        <% }); %>
+        <% }; %>
     </div>
 </div>
-<% }) %>
-<% }; %>
-
-<% if (drinks) { %>
-   <% console.log('drinks', drinks) %>
-<% drinks.forEach(d => { %>
-<ul><h3><a href="/drinks/details/<%=d.idDrink%>"><%= d.strDrink %></a></h3></ul>
-    <li><img src="<%=d.strDrinkThumb%>" alt="<%=d.strDrink%>" width="150px"></li>
-    <li><%= d.strInstructions %></li>
-    <h5>Ingredients:</h5>
-    <table>
-        <% for (let i = 1; i <= 4; i++) { %>
-        <% let ingredient = 'strIngredient'+i %>
-        <% let measure = 'strMeasure'+i %>
-        <% if ( d[ingredient]) { %>
-        <tr>
-            <td><%=d[ingredient]%></td>
-            <td><%=d[measure]%></td>
-        </tr>
-        <% }} %>
-        <% if (d.strIngredient5) { %>
-        <tr>
-            <td><a href="/drinks/details/<%=d.idDrink%>">click for more...</a></td>
-        </tr>
-        <% } %>
-    </table>
-<% }) %>
-<% }; %>
 
 <%- include('../partials/footer') %> 

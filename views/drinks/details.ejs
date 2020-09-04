@@ -22,6 +22,7 @@
                 </tr>
                 <% }} %>
             </table>
+            <p class="grey-text right">Author: TheDrinkDB</p>
             <h3 class="title red-text">Reviews:</h3>
             <% if (reviews.length > 0) { %>
                 <% reviews.forEach(r => { %>
@@ -94,7 +95,7 @@
                 <label for="user">
                     <% if (user) { %>
                     Author: <%= user.name %></label><br><br>
-                    <button class="btn blue pulse" type="submit">Submit Review</button>
+                    <button class="btn blue pulse" type="submit">Submit Review</button><br><br>
                     <% } else { %>
                     You must be <a href="/auth/google">Logged In</a> to leave a review!</label>
                     <% }; %>
@@ -109,6 +110,7 @@
         <% if (drink.drinkImg) { %> 
             <img src="<%=drink.drinkImg%>" alt="<%=drink.name%>" class="responsive-img">
         <% } else { %> 
+            <% console.log(drink.dringImg) %> 
             <img src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
         <% }; %>
     </div>
@@ -129,10 +131,11 @@
                 </tr>
                 <% }} %>
             </table>
+            <p class="grey-text right">Author <%= drink.author %> </p>
             <h3 class="title red-text">Reviews:</h3>
             <% if (reviews.length > 0) { %>
             <% reviews.forEach(r => { %>
-            <div class="card col s3">
+            <div class="card col s3" >
                 <div class="card-content">
                     <% if (r.rating == 1) { %>
                     <span><i class="material-icons" style="color: gold;">star</i></span>
@@ -205,7 +208,7 @@
                     <label for="user">
                         <% if (user) { %>
                         Author: <%= user.name %></label><br><br>
-                    <button class="btn blue pulse" type="submit">Submit Review</button>
+                    <button class="btn blue pulse" type="submit">Submit Review</button><br><br>
                     <% } else { %>
                     You must be <a href="/auth/google">Logged In</a> to leave a review!</label>
                     <% }; %>
