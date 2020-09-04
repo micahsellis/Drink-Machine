@@ -1,126 +1,86 @@
 <%- include('../partials/header') %> 
 
-<div class="block">
+<div class="container">
     <div class="card">
         <div class="card-content">
-            <form action="/drinks/update/<%= drink.id %> " method="POST">
-                <label for="name">Drink Name: </label>
-                <input type="text" name="name" value="<%= drink.name %>" required>
-                <label for="category">Category: </label>
-                <select name="category" value="<%= drink.category %> " required>
-                    <option value="Alcoholic">Alcoholic</option>
-                    <option value="Non alcoholic">Non alcoholic</option>
-                    <option value="Optional alcohol">Optional alcohol</option>
-                </select>
-                <label for="instructions">Instructions: </label>
-                <input type="text" name="instructions" value="<%= drink.instructions %> " required>
-                <label for="drinkImg">Drink Image: </label>
-                <input type="text" value="<%= drink.drinkImg %> ">
-                <table>
-                    <tr>
-                        <th>Ingredients: </th>
-                        <th>Measurements: </th>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient1" value="<%= drink.ingredient1 %> " required>
-                        <input type="text" name="measure1" value="<%= drink.measure1 %> " required>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient2" value="<%= drink.ingredient2 %>">
-                        <input type="text" name="measure2" value="<%= drink.measure2 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient3" value="<%= drink.ingredient3 %>">
-                        <input type="text" name="measure3" value="<%= drink.measure3 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient4" value="<%= drink.ingredient4 %>">
-                        <input type="text" name="measure4" value="<%= drink.measure4 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient5" value="<%= drink.ingredient5 %>">
-                        <input type="text" name="measure5" value="<%= drink.measure5 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient6" value="<%= drink.ingredient6 %>">
-                        <input type="text" name="measure6" value="<%= drink.measure6 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient7" value="<%= drink.ingredient7 %>">
-                        <input type="text" name="measure7" value="<%= drink.measure7 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient8" value="<%= drink.ingredient8 %>">
-                        <input type="text" name="measure8" value="<%= drink.measure8 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient9" value="<%= drink.ingredient9 %>">
-                        <input type="text" name="measure9" value="<%= drink.measure9 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient10" value="<%= drink.ingredient10 %>">
-                        <input type="text" name="measure10" value="<%= drink.measure10 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient11" value="<%= drink.ingredient11 %>">
-                        <input type="text" name="measure11" value="<%= drink.measure11 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient12" value="<%= drink.ingredient12 %>">
-                        <input type="text" name="measure12" value="<%= drink.measure12 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient13" value="<%= drink.ingredient13 %>">
-                        <input type="text" name="measure13" value="<%= drink.measure13 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient14" value="<%= drink.ingredient14 %>">
-                        <input type="text" name="measure14" value="<%= drink.measure14 %>">
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <input type="text" name="ingredient15" value="<%= drink.ingredient15 %>">
-                        <input type="text" name="measure15" value="<%= drink.measure15 %>">
-                    </tr>
-                </table>
-                <label for="user">
-                    <% if (user) { %>
-                    <%= user.name %>
-                    <button type="submit">Update Drink</button>
-                    <% } else { %>
-                    You must be <a href="/auth/google">Logged In</a> to update a drink!
-                    <% }; %>
-                </label>
+            <form action="/drinks/new" method="POST">
+                <div class="row">
+                    <div class="input-field col s10">
+                        <input type="text" name="name" value="<%= drink.name %> " required>
+                        <label for="name"><span class="red-text" style="font-size: smaller;">*</span>Drink Name:
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <select name="category" required value="<%= drink.category %> ">
+                            <option value="" disabled seleted>Choose a category</option>
+                            <option value="Alcoholic">Alcoholic</option>
+                            <option value="Non alcoholic">Non alcoholic</option>
+                            <option value="Optional alcohol">Optional alcohol</option>
+                        </select>
+                        <label for="category"><span class="red-text" style="font-size: smaller;">*</span>Category:
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" name="instructions" value="<%= drink.instructions %> " required>
+                        <label for="instructions"><span class="red-text"
+                                style="font-size: smaller;">*</span>Instructions: </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" value="<%= drink.drinkImg %> ">
+                        <label for="drinkImg">Drink Image: </label>
+                    </div>
+                </div>
+                <div class="container">
+                    <h5> &nbsp;&nbsp; <span class="red-text" style="font-size: smaller;">*</span>Ingredients: <span
+                            class="red-text" style="font-size: 12px;">(at least one ingredient and measurement is
+                            required)</span></h5>
+                    <div class="row">
+                        <% for (let i=1; i<16; i++) { %>
+                        <% let ingredient = 'ingredient' +i %>
+                        <% let measure = 'measure' +i %>
+                        <% const markup = `
+                            <div class="input-field col s6">
+                                <input type="text" name="${ingredient}" value="${drink[ingredient]}" required>
+                                <label for="${ingredient}">ingredient</label>
+                            </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="${measure}" value="${drink[measure]}" required>
+                            <label for="${measure}">measurement</label>
+                        </div>`
+                            %>
+                        <%- markup %>
+                        <% }; %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <% if (user) { %>
+                        <label for="disabled">Author:</label>
+                        <input name="author" disabled
+                            value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name %>"
+                            id="disabled"><br><br>
+                        <button class="btn lime accent-3 black-text" type="submit">Add Drink</button>
+                        <% } else { %>
+                        <p>You must be <a href="/auth/google">Logged In</a> to create a drink!</p>
+                        <% }; %>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, Number);
+    });
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,12 +1,15 @@
 const router = require('express').Router();
 const drinksCtrl = require('../controllers/drinks');
+const drink = require('../models/drink');
+const drinks = require('../controllers/drinks');
 
 router.get('/list', drinksCtrl.list)
 router.get('/new', drinksCtrl.new)
 router.get('/details/:id', drinksCtrl.details)
-router.get('/update/:id', drinksCtrl.update)
+router.get('/update/:id', isLoggedIn, drinksCtrl.update)
 router.post('/new', isLoggedIn, drinksCtrl.create)
 router.post('/results', drinksCtrl.search)
+router.put('/update/:id', isLoggedIn, drinksCtrl.put)
 router.delete('/delete/:id', drinksCtrl.delete)
 
 function isLoggedIn(req, res, next) {

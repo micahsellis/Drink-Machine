@@ -1,45 +1,51 @@
 <%- include('../partials/header') %>
 
-<% if (drinks.length > 0) { %>
-    <% console.log(drinks) %> 
-<% drinks.forEach(d => { %>
-<div class="block">
-    <div class="card">
-        <div class="card-content">
-            <ul>
-                <h3 class="title"><%= d.name %></h3>
-                <h4 class="subtitle"><%= d.category %></h4>
-                <% if (d.drinkImg) { %>
-                <img src="<%= d.drinkImg %>" alt="<%= d.name %> Image" width="150px">
-                <% } %>
-                <p><%= d.instructions%></p>
-                <h5>Ingredients:</h5>
-                <table>
-                    <% for (let i = 1; i <= 15; i++) { %>
-                        <% let ingredient = 'ingredient'+i %>
-                        <% let measure = 'measure'+i %>
-                        <% if ( d[ingredient]) { %>
-                            <tr>
-                                <td><%=d[ingredient]%></td>
-                                <td><%=d[measure]%></td>
-                            </tr>
-                    <% }} %>
-                </table>
-                <form action="/drinks/delete/<%=d.id%>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Drink</button>
-                </form>
-            </ul>
-        </div>
-    </div>
-</div>
-<% }) %>
-<% } else { %>
-    <div class="block">
-        <div class="card">
-            <div class="card-content">
-                <h3>Sorry! It doesn't look like you've created any drinks.</h3>
-                <h4><a href="/drinks/new">Click here to add a drink!</a></h4>
+<div class="row center-cols center-align"></div>
+    <% if (drinks.length > 0) { %>
+        <% drinks.forEach(d => { %>
+            <div class="container"><div class="col s4">
+                <div class="card large">
+                    <div class="card-image">
+                        <% if (d.drinkImg) { %>
+                            <img src="<%= d.drinkImg %>" alt="<%= d.name %> Image" width="150px">
+                        <% } else { %>
+                            <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
+                        <% }; %>
+                        <span class="card-title"><%= d.name %><br><%= d.category %></span>
+                    </div>
+                    <div class="card-content">
+                        <p><%= d.instructions%></p>
+                        <h5>Ingredients:</h5>
+                        <table>
+                            <% for (let i = 1; i <= 15; i++) { %>
+                                <% let ingredient = 'ingredient'+i %>
+                                <% let measure = 'measure'+i %>
+                                <% if ( d[ingredient]) { %>
+                                    <tr>
+                                        <td><%=d[ingredient]%></td>
+                                        <td><%=d[measure]%></td>
+                                    </tr>
+                            <% }} %>
+                        </table>
+                    </div></div>
+                    <div class="card-action">
+                        <form class="center" action="/drinks/delete/<%=d.id%>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn red">Delete Drink<i class="material-icons right">delete</i></button>
+                            <a class="btn center" href="/drinks/update/<%= d.id %>">Update Drink<i class="material-icons right">edit</i></a>
+                        </form>
+                    </div>
+                </div>
+            </div><br><br>
+        <% }) %>
+    <% } else { %>
+        <div class="block">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Sorry! It doesn't look like you've created any drinks.</h3>
+                    <h4><a href="/drinks/new">Click here to add a drink!</a></h4>
+                </div>
             </div>
         </div>
-    </div>
-<% }; %>
+    <% }; %>    
+
+    <%- include('../partials/footer') %> 

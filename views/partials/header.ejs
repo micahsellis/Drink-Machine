@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!-- <link rel="stylesheet" href="/public/stylesheets/mystyles.css"> -->
-    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title>Drink Machine | <%= title %></title>
 </head>
 <body>
-<div class="">
     <nav>
-        <div class="">
-            <a href="/" class="title">Drink Machine</a>
-            <form action="/drinks/results" method="POST">
-            <input type="text" name="search" value="<%=body%>" onfocus="this.value=''">
-            <input type="submit" value="SEARCH"></form>
-            <a href="/drinks/new">Add New Drink</a>
-            <a href="/drinks/list">Your Drinks</a>
+        <div class="nav-wrapper cyan white-text">
+            <a href="/" class="brand-logo left">Drink Machine</a>
             <ul class="right">
                 <li>
-                    <% if (user) { %>
-                    <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
-                    <% } else { %>
-                    <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
-                    <% } %>
+                    <form action="/drinks/results" method="POST">
+                        <div class="input-field">
+                            <input id="search" type="search" name="search" placeholder="Search...">
+                            <label for="search" class="label-icon"><i class="material-icons center">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
                 </li>
+                    <% if (user) { %>
+                        <li><a href="/drinks/new"><i class="material-icons left">local_bar</i>Add New Drink</a></li> 
+                        <li><a href="/drinks/list"><i class="material-icons left">favorite</i>Your Drinks</a></li>
+                        <li><a href="/logout"><i class="material-icons left">account_circle</i>Log Out</a></li>
+                    <% } else { %>
+                        <li><a href="/auth/google"><i class="material-icons left">login</i>Login with Google</a></li>
+                    <% } %>
             </ul>
         </div>
     </nav>
-</div>
+<div id="page-container"><div id="conten-wrap">

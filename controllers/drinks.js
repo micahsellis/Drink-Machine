@@ -10,7 +10,8 @@ module.exports = {
     details,
     delete: deleteDrink,
     new: newDrink,
-    update
+    update,
+    put
 }
 
 const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
@@ -71,9 +72,7 @@ function details(req, res) {
             if (err) console.log(err)
             const drinkAPI = JSON.parse(doc).drinks[0]
             Review.find({ idDrink: req.params.id })
-                .then(docs => {
-                    console.log(docs)
-                    const reviews = JSON.parse(docs)
+                .then(reviews => {
                     console.log(reviews)
                     res.render('drinks/details', {
                         title: drinkAPI.name,
@@ -86,13 +85,13 @@ function details(req, res) {
                 .catch(err => console.log(err))
         })
     } else {
-        Drink.findById(req.params.id)
+        Drink.find({idDrink: req.params.id})
             .then(drink => {
                 Review.find({ idDrink: drink.idDrink })
                     .then(reviews => {
                         res.render('drinks/details', {
                             title: drink.name,
-                            drink,
+                            drink: drink[0],
                             drinkAPI: null,
                             body: 'Search',
                             reviews
@@ -133,17 +132,26 @@ function list(req, res) {
 }
 
 function update(req, res) {
-    Drink.find({ idDrink: req.params.id })
+    Drink.find({ _id: req.params.id })
         .then(drink => {
-            if (idUser == req.user.id) {
+            // if (drink.idUser == req.user.id) {
+                console.log(drink)
                 res.render('drinks/update', {
                     title: `Update ${drink.name}`,
-                    drink,
+                    drink: drink[0],
                     body: 'Search',
                 })
-            } else {
-                res.redirect('drinks/list')
-            }
+            // } else {
+            //     res.redirect('/drinks/list')
+            // }
+        })
+        .catch(err => console.log(err))
+}
+
+function put(req, res) {
+    Drink.findByIdAndUpdate(req.params.id, req.body)
+        .then(doc => {
+            res.redirect('/drinks/list')
         })
         .catch(err => console.log(err))
 }

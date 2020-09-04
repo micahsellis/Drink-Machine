@@ -1,67 +1,73 @@
 
 <%- include('partials/header') %> 
-<div class="block">
-  <div class="card">
-    <div class="card-content">
-        <ul>
-          <h3 class="title"><a href="/drinks/details/<%=newDrink.idDrink%>"><%= newDrink.strDrink %></a></h3>
-        <% dArr = Object.values(newDrink) %>
-        <img src="<%=newDrink.strDrinkThumb%>" alt="<%=newDrink.strDrink%>" width="150px">
-        <p><%= newDrink.strInstructions.substr(0,40)%>...</p>
-                <h5>Ingredients:</h5>
-                <table>
-                    <% for (let i = 1; i <= 4; i++) { %>
-                    <% let ingredient = 'strIngredient'+i %>
-                    <% let measure = 'strMeasure'+i %>
-                    <% if ( newDrink[ingredient]) { %>
-                    <tr>
-                      <td><%=newDrink[ingredient]%></td>
-                      <td><%=newDrink[measure]%></td>
-                    </tr>
-                    <% }} %>
-                    <% if (newDrink.strIngredient5) { %>
-                      <tr>
-                        <td><a href="/drinks/details/<%=newDrink.idDrink%>">click for more...</a></td>
-                      </tr>
-                    <% } %>
-                </table>
-      </ul>
-    </div>
+
+
+<div class="parallax-container">
+  <div class="parallax">
+              <img src="<%=newDrink.strDrinkThumb%>" alt="<%=newDrink.strDrink%>" class="responsive-img">
   </div>
 </div>
-<% myDrinks.forEach(md => { %>
-  <div class="block">
-    <div class="card">
-      <div class="card-content">
-        <ul>
-          <h3 class="title"><a href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a></h3>
-          <form action="/drinks/delete/<%=md.id%>?_method=DELETE" method="POST"><button type="submit">X</button></form>
-          <h4 class="subtitle"><%= md.category %></h4>
-                <% if (md.drinkImg) { %>
-                <img src="<%= md.drinkImg %>" alt="<%= md.name %> Image" width="150px">
-                <% } %>
-          <p><%= md.instructions.substr(0,40) %> ...</p>
-            <h5>Ingredients:</h5>
-                <table>
-                    <% for (let i = 1; i <= 4; i++) { %>
-                    <% let ingredient = 'ingredient'+i %>
-                    <% let measure = 'measure'+i %>
-                    <% if ( md[ingredient]) { %>
-                    <tr>
-                      <td><%=md[ingredient]%></td>
-                      <td><%=md[measure]%></td>
-                    </tr>
-                    <% }} %>
-                    <% if (md.ingredient5) { %>
-                    <tr>
-                      <td><a href="/drinks/details/<%=md._id%>">click for more...</a></td>
-                    </tr>
-                    <% } %>
-                </table>
-          </ul>
-        </div>
+    <div class="section white">
+      <div class="row container">
+        <h2 class="header"><a href="/drinks/details/<%=newDrink.idDrink%>"><%= newDrink.strDrink %></a></h2>
+        <p style="font-size: larger;"><%= newDrink.strInstructions%></p>
+        <h4>Ingredients:</h5>
+        <table class="responsive-table">
+          <% for (let i = 1; i <= 15; i++) { %>
+          <% let ingredient = 'strIngredient'+i %>
+          <% let measure = 'strMeasure'+i %>
+          <% if ( newDrink[ingredient]) { %>
+          <tr>
+            <td><%=newDrink[ingredient]%></td>
+            <td><%=newDrink[measure]%></td>
+          </tr>
+          <% }} %>
+        </table>
       </div>
     </div>
-    <% }); %>
-</body>
-</html>
+
+<div class="row center-cols center-align">
+  <% myDrinks.forEach(md => { %>
+    <div class="col m4">
+    <div class="card medium">
+      <div class="card-image waves-effect waves-block waves-light">
+        <% if (md.drinkImg) { %> 
+        <img class="activator" src="<%= md.drinkImg %>" alt="<%= md.name %>">
+        <% } else { %>
+          <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink"> 
+        <% }; %> 
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><%= md.name %><i
+            class="material-icons right">more_vert</i></span><br><br>
+        <p><a href="#"><a href="/drinks/details/<%=md.idDrink%>">Click to view full drink details</a></a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><a href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a><i class="material-icons right">close</i></span>
+        <p><%= md.instructions %></p>
+        <h5>Ingredients:</h5>
+        <table class="responsive-table">
+          <% for (let i = 1; i <= 15; i++) { %>
+          <% let ingredient = 'ingredient'+i %>
+          <% let measure = 'measure'+i %>
+          <% if ( md[ingredient]) { %>
+          <tr>
+            <td><%=md[ingredient]%></td>
+            <td><%=md[measure]%></td>
+          </tr>
+          <% }} %>
+        </table>
+      </div>
+    </div>
+    </div>
+  <% }); %> 
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, 0);
+      });
+</script>
+
+<%- include('partials/footer') %> 
