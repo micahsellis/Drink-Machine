@@ -1,6 +1,6 @@
 # Drink Machine
 
-A simple app consuming TheCocktailDB Api and provides the user with fun cocktail recipies that they can try while stuck at home in quarantine. Users are able to submit their own recipies for anyone to try. You can even leave reviews on your favorite drinks to let others know what tastes best! 2020 has been hard on all of us, [IT'S TIME TO DRINK!](https://drinks-machine.herokuapp.com/)
+A simple app consuming TheCocktailDB Api and provides the user with fun cocktail recipes that they can try while stuck at home in quarantine. Users are able to submit their own recipes for anyone to try. You can even leave reviews on your favorite drinks to let others know what tastes best! 2020 has been hard on all of us, [IT'S TIME TO DRINK!](https://drinks-machine.herokuapp.com/)
 
 # Screenshots
 Home Page:
