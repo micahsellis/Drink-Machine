@@ -67,6 +67,12 @@ function search(req, res) {
 })
 }
 
+function getDrinksfromAPI() {
+    fetch('http://pokeapi.co/api/v2/pokemon/')
+        .then( (res) => res.json() )
+        .then( (data) => data )
+}
+
 function details(req, res) {
     if (req.params.id.length < 13) {
         request(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${req.params.id}`, (err, response, doc) => {
