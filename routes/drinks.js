@@ -8,7 +8,7 @@ router.get('/list', drinksCtrl.list)
 router.get('/new', drinksCtrl.new)
 router.get('/details/:id', drinksCtrl.details)
 router.get('/update/:id', isLoggedIn, drinksCtrl.update)
-express.router.post('/new', isLoggedIn, () => {
+router.post('/new', isLoggedIn, () => {
     const drink = new Drink(req.body)
     drink.idDrink = Date.now().toString()
     drink.idUser = req.user.id
