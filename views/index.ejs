@@ -1,75 +1,93 @@
+<%- include('partials/header') %>
 
-<%- include('partials/header') %> 
-
-
-<div class="parallax-container">
-  <div class="parallax">
-              <img src="<%=newDrink.strDrinkThumb%>" alt="<%=newDrink.strDrink%>" class="responsive-img">
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="<%=newDrink.strDrinkThumb%>" alt="<%=newDrink.strDrink%>" class="responsive-img">
+    </div>
   </div>
-</div>
-    <div class="section white">
-      <div class="row container">
-        <h2 class="header"><a href="/drinks/details/<%=newDrink.idDrink%>"><%= newDrink.strDrink %></a></h2>
-        <p style="font-size: larger;"><%= newDrink.strInstructions%></p>
-        <h4>Ingredients:</h5>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header"><a href="/drinks/details/<%=newDrink.idDrink%>">
+          <%= newDrink.strDrink %>
+        </a></h2>
+      <p style="font-size: larger;">
+        <%= newDrink.strInstructions%>
+      </p>
+      <h4>Ingredients:</h5>
         <table class="responsive-table">
-          <% for (let i = 1; i <= 15; i++) { %>
-          <% let ingredient = 'strIngredient'+i %>
-          <% let measure = 'strMeasure'+i %>
-          <% if ( newDrink[ingredient]) { %>
-          <tr>
-            <td><%=newDrink[ingredient]%></td>
-            <td><%=newDrink[measure]%></td>
-          </tr>
-          <% }} %>
+          <% for (let i=1; i <=15; i++) { %>
+            <% let ingredient='strIngredient' +i %>
+              <% let measure='strMeasure' +i %>
+                <% if ( newDrink[ingredient]) { %>
+                  <tr>
+                    <td>
+                      <%=newDrink[ingredient]%>
+                    </td>
+                    <td>
+                      <%=newDrink[measure]%>
+                    </td>
+                  </tr>
+                  <% }} %>
         </table>
         <p class="grey-text center">Author: TheCocktailDB</p>
-      </div>
     </div>
+  </div>
 
-<div class="row center-cols center-align">
-  <% myDrinks.forEach(md => { %>
-    <div class="col s4">
-    <div class="card medium">
-      <div class="card-image waves-effect waves-block waves-light">
-        <% if (md.drinkImg) { %> 
-        <img class="activator" src="<%= md.drinkImg %>" alt="<%= md.name %>">
-        <% } else { %>
-          <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink"> 
-        <% }; %> 
+  <div class="row center-cols center-align">
+    <% myDrinks.forEach(md=> { %>
+      <div class="col s4">
+        <div class="card medium">
+          <div class="card-image waves-effect waves-block waves-light">
+            <% if (md.drinkImg) { %>
+              <img class="activator" src="<%= md.drinkImg %>" alt="<%= md.name %>">
+              <% } else { %>
+                <img class="activator" src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
+                <% }; %>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+              <%= md.name %><i class="material-icons right">more_vert</i>
+            </span><br><br>
+            <p><a href="#"><a href="/drinks/details/<%=md.idDrink%>">Click to view full drink details</a></a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><a href="/drinks/details/<%=md.idDrink%>">
+                <%= md.name %>
+              </a><i class="material-icons right">close</i></span>
+            <p>
+              <%= md.instructions %>
+            </p>
+            <h5>Ingredients:</h5>
+            <table class="responsive-table">
+              <% for (let i=1; i <=15; i++) { %>
+                <% let ingredient='ingredient' +i %>
+                  <% let measure='measure' +i %>
+                    <% if ( md[ingredient]) { %>
+                      <tr>
+                        <td>
+                          <%=md[ingredient]%>
+                        </td>
+                        <td>
+                          <%=md[measure]%>
+                        </td>
+                      </tr>
+                      <% }} %>
+            </table>
+            <p class="grey-text">Author: <%= md.author %>
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><%= md.name %><i
-            class="material-icons right">more_vert</i></span><br><br>
-        <p><a href="#"><a href="/drinks/details/<%=md.idDrink%>">Click to view full drink details</a></a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><a href="/drinks/details/<%=md.idDrink%>"><%= md.name %></a><i class="material-icons right">close</i></span>
-        <p><%= md.instructions %></p>
-        <h5>Ingredients:</h5>
-        <table class="responsive-table">
-          <% for (let i = 1; i <= 15; i++) { %>
-          <% let ingredient = 'ingredient'+i %>
-          <% let measure = 'measure'+i %>
-          <% if ( md[ingredient]) { %>
-          <tr>
-            <td><%=md[ingredient]%></td>
-            <td><%=md[measure]%></td>
-          </tr>
-          <% }} %>
-        </table>
-        <p class="grey-text">Author: <%= md.author %> </p>
-      </div>
-    </div>
-    </div>
-  <% }); %> 
-</div>
+      <% }); %>
+  </div>
 
-<script>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.parallax');
-        var instances = M.Parallax.init(elems, 0);
-      });
-</script>
+      var elems = document.querySelectorAll('.parallax');
+      var instances = M.Parallax.init(elems, 0);
+    });
+  </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>swal("Welcome to Drink Machine!", "A random drink has been displayed from the database, use the search feature to find new recipes!") </script>
 
-<%- include('partials/footer') %> 
+  <%- include('partials/footer') %>
