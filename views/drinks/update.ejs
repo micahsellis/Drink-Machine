@@ -60,15 +60,15 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 center">
-                        <% if (user) { %>
+                        // <% if (user) { %>
                         <label for="disabled">Author:</label>
                         <input name="author" disabled
-                            value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name %>"
+                            value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test"
                             id="disabled"><br><br>
                         <button class="btn lime accent-3 black-text" type="submit">Update Drink <i class="material-icons right">send</i></button>
-                        <% } else { %>
-                        <p>You must be <a href="/auth/google">Logged In</a> to create a drink!</p>
-                        <% }; %>
+                        // <% } else { %>
+                        // <p>You must be <a href="/auth/google">Logged In</a> to create a drink!</p>
+                        // <% }; %>
                     </div>
                 </div>
             </form>

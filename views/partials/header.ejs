@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +8,30 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
-    <title>Drink Machine | <%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+    <title>Drink Machine | <%= title %>
+    </title>
 </head>
+
 <body>
     <nav>
         <div class="nav-wrapper blue-grey darken-4 white-text">
-            <a href="/" class="brand-logo left" style="top: -5px;"><img src="/images/DM.png" alt="Drink Machine" style="top: -5px;"></a>
-            <ul class="right">
-                <li>
-                    <form action="/drinks/results" method="POST">
-                        <li><button for="search" class="btn-floating btn-small waves-effect blue-grey"><i class="material-icons">search</i></button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                        <li><input class="white-text" id="search" type="search" name="search" placeholder="Search..."></li>
-                            
-                    </form>
+            <ul>
+                <li><a href="/" class="brand-logo left" style="top: -5px;"><img src="/images/DM.png" alt="Drink Machine"
+                            style="top: -5px;"></a>
+                    <!-- <li> -->
+                <li class="right"><a href="/drinks/new"><i class="material-icons left">local_bar</i>Add New Drink</a>
                 </li>
-                    <% if (user) { %>
-                        <li><a href="/drinks/new"><i class="material-icons left">local_bar</i>Add New Drink</a></li> 
-                        <li><a href="/drinks/list"><i class="material-icons left">favorite</i>Your Drinks</a></li>
-                        <li><a href="/logout"><i class="material-icons left">account_circle</i>Log Out</a></li>
-                    <% } else { %>
-                        <li><a href="/auth/google"><i class="material-icons left">login</i>Login with Google</a></li>
-                    <% } %>
+                <li class="right"><a href="/drinks/list"><i class="material-icons left">favorite</i>Your Drinks</a></li>
+                <li class="right">
+                    <form action="/drinks/results" method="POST">
+                <li><button for="search" class="btn-floating btn-small waves-effect blue-grey"><i
+                            class="material-icons">search</i></button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><input class="white-text" id="search" type="search" name="search" placeholder="Search..."></li>
+
+                </form>
+                </li>
             </ul>
         </div>
     </nav>
-<main>
+    <main>

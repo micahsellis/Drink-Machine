@@ -9,8 +9,8 @@ module.exports = {
 function create(req, res) {
     const review = new Review(req.body)
     review.idDrink = req.params.id
-    review.author = req.user.name
-    review.idUser = req.user._id
+    review.author = "Test"
+    review.idUser = "101"
     review.save()
         .then(() => res.redirect(`/drinks/details/${req.params.id}`))
         .catch(err => console.log(err))

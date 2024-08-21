@@ -37,8 +37,8 @@ function home(req, res) {
 function create(req, res) {
     const drink = new Drink(req.body)
     drink.idDrink = Date.now().toString()
-    drink.idUser = req.user.id
-    drink.author = req.user.name
+    drink.idUser = "101"
+    drink.author = "Test"
     drink.save()
         .then(drink => res.redirect('/'))
         .catch(err => console.log(err))
@@ -127,10 +127,10 @@ function deleteDrink(req, res) {
 }
 
 function list(req, res) {
-    Drink.find({ idUser: req.user.id })
+    Drink.find({ idUser: "101" })
         .then(drinks => {
             res.render('drinks/list', {
-                title: `${req.user.name}'s Drinks`,
+                title: "Your Drinks",
                 drinks,
                 body: 'Search',
             })
@@ -142,7 +142,7 @@ function update(req, res) {
     Drink.find({ _id: req.params.id })
         .then(drink => {
             // if (drink.idUser == req.user.id) {
-                console.log(drink)
+                // console.log(drink)
                 res.render('drinks/update', {
                     title: `Update ${drink.name}`,
                     drink: drink[0],

@@ -1,233 +1,280 @@
 <%- include('../partials/header') %>
 
-<% if (drinkAPI) { %>
-    <div class="parallax-container" style="height: 900px;">
-        <div class="parallax">
-            <img src="<%=drinkAPI.strDrinkThumb%>" alt="<%=drinkAPI.strDrink%>" class="responsive-img">
+    <% if (drinkAPI) { %>
+        <div class="parallax-container" style="height: 900px;">
+            <div class="parallax">
+                <img src="<%=drinkAPI.strDrinkThumb%>" alt="<%=drinkAPI.strDrink%>" class="responsive-img">
+            </div>
         </div>
-    </div>
-    <div class="section white">
-        <div class="row container">
-            <h2 class="header"><a href="/drinks/details/<%=drinkAPI.idDrink%>"><%= drinkAPI.strDrink %></a></h2>
-            <p  style="font-size: larger;"><%= drinkAPI.strInstructions%></p>
-            <h4 class="teal-text">Ingredients:</h5>
-            <table class="responsive-table">
-                <% for (let i = 1; i <= 15; i++) { %>
-                <% let ingredient = 'strIngredient'+i %>
-                <% let measure = 'strMeasure'+i %>
-                <% if ( drinkAPI[ingredient]) { %>
-                <tr>
-                    <td><%=drinkAPI[ingredient]%></td>
-                    <td><%=drinkAPI[measure]%></td>
-                </tr>
-                <% }} %>
-            </table>
-            <p class="grey-text right">Author: TheDrinkDB</p>
-            <h3 class="title red-text">Reviews:</h3>
-            <% if (reviews.length > 0) { %>
-                <% reviews.forEach(r => { %>
-                    <div class="card col s3">
-                        <div class="card-content">
-                            <% if (r.rating == 1) { %> 
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                            <% } else if (r.rating == 2) { %>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                            <% } else if (r.rating == 3) { %>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                            <% } else if (r.rating == 4) { %>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons">star_border</i></span>
-                            <% } else if (r.rating == 5) { %>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                                <span><i class="material-icons" style="color: gold;">star</i></span>
-                            <% }; %> 
-                            <% if (r.details.length > 0) { %>
-                            <p><%= r.details %> </p><br>
-                            <% } %>
-                            <p class="right" style="font-size: 10px;"><%= r.author %></p>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header"><a href="/drinks/details/<%=drinkAPI.idDrink%>">
+                        <%= drinkAPI.strDrink %>
+                    </a></h2>
+                <p style="font-size: larger;">
+                    <%= drinkAPI.strInstructions%>
+                </p>
+                <h4 class="teal-text">Ingredients:</h5>
+                    <table class="responsive-table">
+                        <% for (let i=1; i <=15; i++) { %>
+                            <% let ingredient='strIngredient' +i %>
+                                <% let measure='strMeasure' +i %>
+                                    <% if ( drinkAPI[ingredient]) { %>
+                                        <tr>
+                                            <td>
+                                                <%=drinkAPI[ingredient]%>
+                                            </td>
+                                            <td>
+                                                <%=drinkAPI[measure]%>
+                                            </td>
+                                        </tr>
+                                        <% }} %>
+                    </table>
+                    <p class="grey-text right">Author: TheDrinkDB</p>
+                    <h3 class="title red-text">Reviews:</h3>
+                    <% if (reviews.length> 0) { %>
+                        <% reviews.forEach(r=> { %>
+                            <div class="card col s3">
+                                <div class="card-content">
+                                    <% if (r.rating==1) { %>
+                                        <span><i class="material-icons" style="color: gold;">star</i></span>
+                                        <span><i class="material-icons">star_border</i></span>
+                                        <span><i class="material-icons">star_border</i></span>
+                                        <span><i class="material-icons">star_border</i></span>
+                                        <span><i class="material-icons">star_border</i></span>
+                                        <% } else if (r.rating==2) { %>
+                                            <span><i class="material-icons" style="color: gold;">star</i></span>
+                                            <span><i class="material-icons" style="color: gold;">star</i></span>
+                                            <span><i class="material-icons">star_border</i></span>
+                                            <span><i class="material-icons">star_border</i></span>
+                                            <span><i class="material-icons">star_border</i></span>
+                                            <% } else if (r.rating==3) { %>
+                                                <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                <span><i class="material-icons">star_border</i></span>
+                                                <span><i class="material-icons">star_border</i></span>
+                                                <% } else if (r.rating==4) { %>
+                                                    <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                    <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                    <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                    <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                    <span><i class="material-icons">star_border</i></span>
+                                                    <% } else if (r.rating==5) { %>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <% }; %>
+                                                            <% if (r.details.length> 0) { %>
+                                                                <p>
+                                                                    <%= r.details %>
+                                                                </p><br>
+                                                                <% } %>
+                                                                    <p class="right" style="font-size: 10px;">
+                                                                        <%= r.author %>
+                                                                    </p>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container">
+                <div class="container center-align">
+                    <span class="title">
+                        <h3>Leave A Review!</h3>
+                    </span><br>
+                    <form action="/reviews/<%=drinkAPI.idDrink%>" method="POST">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select name="rating">
+                                    <option value="" disabled selected>Choose your rating</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <label for="rating">Rating</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="details" class="materialize-textarea" data-length="120"
+                                    name="details"></textarea>
+                                <label for="details">Comments</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="user">
+                                <!-- <% if (user) { %> -->
+                                Author: Test</label><br><br>
+                            <button class="btn blue pulse" type="submit">Submit Review</button><br><br>
+                            <!-- <% } else { %>
+                    You must be <a href="/auth/google">Logged In</a> to leave a review!</label>
+                    <% }; %> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% }; %>
+
+            <% if (drink) { %>
+                <div class="parallax-container" style="height: 900px;">
+                    <div class="parallax">
+                        <% if (drink.drinkImg) { %>
+                            <img src="<%=drink.drinkImg%>" alt="<%=drink.name%>" class="responsive-img">
+                            <% } else { %>
+                                <% console.log(drink.dringImg) %>
+                                    <img src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
+                                    <% }; %>
+                    </div>
+                </div>
+                <div class="section white">
+                    <div class="row container">
+                        <h2 class="header"><a href="/drinks/details/<%=drink.idDrink%>">
+                                <%= drink.name %>
+                            </a></h2>
+                        <p style="font-size: larger;">
+                            <%= drink.instructions%>
+                        </p>
+                        <h4 class="lime-text">Ingredients:</h5>
+                            <table class="responsive-table">
+                                <% for (let i=1; i <=15; i++) { %>
+                                    <% let ingredient='ingredient' +i %>
+                                        <% let measure='measure' +i %>
+                                            <% if ( drink[ingredient]) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%=drink[ingredient]%>
+                                                    </td>
+                                                    <td>
+                                                        <%=drink[measure]%>
+                                                    </td>
+                                                </tr>
+                                                <% }} %>
+                            </table>
+                            <p class="grey-text right">Author <%= drink.author %>
+                            </p>
+                            <h3 class="title red-text">Reviews:</h3>
+                            <% if (reviews.length> 0) { %>
+                                <% reviews.forEach(r=> { %>
+                                    <div class="card col s3">
+                                        <div class="card-content">
+                                            <% if (r.rating==1) { %>
+                                                <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                <span><i class="material-icons">star_border</i></span>
+                                                <span><i class="material-icons">star_border</i></span>
+                                                <span><i class="material-icons">star_border</i></span>
+                                                <span><i class="material-icons">star_border</i></span>
+                                                <% } else if (r.rating==2) { %>
+                                                    <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                    <span><i class="material-icons" style="color: gold;">star</i></span>
+                                                    <span><i class="material-icons">star_border</i></span>
+                                                    <span><i class="material-icons">star_border</i></span>
+                                                    <span><i class="material-icons">star_border</i></span>
+                                                    <% } else if (r.rating==3) { %>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons"
+                                                                style="color: gold;">star</i></span>
+                                                        <span><i class="material-icons">star_border</i></span>
+                                                        <span><i class="material-icons">star_border</i></span>
+                                                        <% } else if (r.rating==4) { %>
+                                                            <span><i class="material-icons"
+                                                                    style="color: gold;">star</i></span>
+                                                            <span><i class="material-icons"
+                                                                    style="color: gold;">star</i></span>
+                                                            <span><i class="material-icons"
+                                                                    style="color: gold;">star</i></span>
+                                                            <span><i class="material-icons"
+                                                                    style="color: gold;">star</i></span>
+                                                            <span><i class="material-icons">star_border</i></span>
+                                                            <% } else if (r.rating==5) { %>
+                                                                <span><i class="material-icons"
+                                                                        style="color: gold;">star</i></span>
+                                                                <span><i class="material-icons"
+                                                                        style="color: gold;">star</i></span>
+                                                                <span><i class="material-icons"
+                                                                        style="color: gold;">star</i></span>
+                                                                <span><i class="material-icons"
+                                                                        style="color: gold;">star</i></span>
+                                                                <span><i class="material-icons"
+                                                                        style="color: gold;">star</i></span>
+                                                                <% }; %>
+                                                                    <% if (r.details.length> 0) { %>
+                                                                        <p>
+                                                                            <%= r.details %>
+                                                                        </p><br>
+                                                                        <% } %>
+                                                                            <p class="right" style="font-size: 10px;">
+                                                                                <%= r.author %>
+                                                                            </p>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                                        <% } %>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="container">
+                        <div class="card center-align">
+                            <span class="title">
+                                <h3>Leave A Review!</h3>
+                            </span><br>
+                            <form action="/reviews/<%=drink.idDrink%>" method="POST">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <select name="rating">
+                                            <option value="" disabled selected>Choose your rating</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <label for="rating">Rating</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="details" class="materialize-textarea" data-length="120"
+                                            name="details"></textarea>
+                                        <label for="details">Comments</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <button class="btn blue pulse" type="submit">Submit Review</button><br><br>
+
+                                </div>
                         </div>
                     </div>
-                <% }) %>
-            <% } %>
-        </div>
-    </div>
-    <div class="container"><div class="container"><div class="container center-align">
-        <span class="title"><h3>Leave A Review!</h3></span><br>
-        <form action="/reviews/<%=drinkAPI.idDrink%>" method="POST">
-            <div class="row">
-                <div class="input-field col s6">
-                    <select name="rating">
-                        <option value="" disabled selected>Choose your rating</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <label for="rating">Rating</label>
+                    </form>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="details" class="materialize-textarea" data-length="120" name="details"></textarea>
-                    <label for="details">Comments</label>
-                </div>
-            </div>
-            <div class="row">
-                <label for="user">
-                    <% if (user) { %>
-                    Author: <%= user.name %></label><br><br>
-                    <button class="btn blue pulse" type="submit">Submit Review</button><br><br>
-                    <% } else { %>
-                    You must be <a href="/auth/google">Logged In</a> to leave a review!</label>
-                    <% }; %>
-            </div>
-        </form>
-    </div></div></div>
-<% }; %>
 
-<% if (drink) { %>
-<div class="parallax-container" style="height: 900px;">
-    <div class="parallax">
-        <% if (drink.drinkImg) { %> 
-            <img src="<%=drink.drinkImg%>" alt="<%=drink.name%>" class="responsive-img">
-        <% } else { %> 
-            <% console.log(drink.dringImg) %> 
-            <img src="https://i.ytimg.com/vi/c6GV_vRlIIA/maxresdefault.jpg" alt="default drink">
-        <% }; %>
-    </div>
-</div>
-<div class="section white">
-    <div class="row container">
-        <h2 class="header"><a href="/drinks/details/<%=drink.idDrink%>"><%= drink.name %></a></h2>
-        <p style="font-size: larger;"><%= drink.instructions%></p>
-        <h4 class="lime-text">Ingredients:</h5>
-            <table class="responsive-table">
-                <% for (let i = 1; i <= 15; i++) { %>
-                <% let ingredient = 'ingredient'+i %>
-                <% let measure = 'measure'+i %>
-                <% if ( drink[ingredient]) { %>
-                <tr>
-                    <td><%=drink[ingredient]%></td>
-                    <td><%=drink[measure]%></td>
-                </tr>
-                <% }} %>
-            </table>
-            <p class="grey-text right">Author <%= drink.author %> </p>
-            <h3 class="title red-text">Reviews:</h3>
-            <% if (reviews.length > 0) { %>
-            <% reviews.forEach(r => { %>
-            <div class="card col s3" >
-                <div class="card-content">
-                    <% if (r.rating == 1) { %>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <% } else if (r.rating == 2) { %>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <% } else if (r.rating == 3) { %>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <% } else if (r.rating == 4) { %>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons">star_border</i></span>
-                    <% } else if (r.rating == 5) { %>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <span><i class="material-icons" style="color: gold;">star</i></span>
-                    <% }; %>
-                    <% if (r.details.length > 0) { %>
-                    <p><%= r.details %> </p><br>
-                    <% } %>
-                    <p class="right" style="font-size: 10px;"><%= r.author %></p>
-                </div>
-            </div>
-            <% }) %>
-            <% } %>
-    </div>
-</div>
-<div class="container">
-    <div class="container">
-        <div class="card center-align">
-            <span class="title">
-                <h3>Leave A Review!</h3>
-            </span><br>
-            <form action="/reviews/<%=drink.idDrink%>" method="POST">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <select name="rating">
-                            <option value="" disabled selected>Choose your rating</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <label for="rating">Rating</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea id="details" class="materialize-textarea" data-length="120" name="details"></textarea>
-                        <label for="details">Comments</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <label for="user">
-                        <% if (user) { %>
-                        Author: <%= user.name %></label><br><br>
-                    <button class="btn blue pulse" type="submit">Submit Review</button><br><br>
-                    <% } else { %>
-                    You must be <a href="/auth/google">Logged In</a> to leave a review!</label>
-                    <% }; %>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<% }; %>
+                <% }; %>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.parallax');
-        var instances = M.Parallax.init(elems, 0);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, Number);
-    });
-</script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var elems = document.querySelectorAll('.parallax');
+                            var instances = M.Parallax.init(elems, 0);
+                        });
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var elems = document.querySelectorAll('select');
+                            var instances = M.FormSelect.init(elems, Number);
+                        });
+                    </script>
 
-<%- include('../partials/footer') %>
+                    <%- include('../partials/footer') %>
